@@ -1,12 +1,13 @@
 
 
 import time
+import random
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from src.utilities.select_message_for_sending import read_file_line_by_line, update_file
+from src.utilities.select_message_for_sending import read_file_line_by_line, update_file, generate_password
 
 url_input = "./assets/input.txt"
 url_output = "./assets/output.txt"
@@ -16,8 +17,9 @@ def main():
     num_inputs = len(inputs)
     for i in range(0, num_inputs):
         email = inputs[i].strip()
-        password = "123"
-        print(email)
+        randnum = random.randint(8, 12)
+        password = generate_password(randnum)
+        print(email + ": " + password)
         from undetected_chromedriver import Chrome, ChromeOptions
         chrome_options = ChromeOptions()
         chrome_options.add_argument('--log-level=3')

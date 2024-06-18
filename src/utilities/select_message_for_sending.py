@@ -1,6 +1,6 @@
 import time
 import random
-
+import string
 
 def read_file_line_by_line(file, strip = False):
 
@@ -62,3 +62,26 @@ def update_file(file_path, line_number):
     # Write the updated lines back to the file
     with open(file_path, 'w') as file:
         file.writelines(lines)
+
+def generate_password(length):
+    """
+    Generate a random password with the specified length and character types.
+
+    Args:
+        length (int): The desired length of the password (default: 12).
+        include_uppercase (bool): Whether to include uppercase letters (default: True).
+        include_lowercase (bool): Whether to include lowercase letters (default: True).
+        include_digits (bool): Whether to include digits (default: True).
+        include_special_chars (bool): Whether to include special characters (default: True).
+
+    Returns:
+        str: The generated password.
+    """
+    characters = ''
+    characters += string.ascii_uppercase
+    characters += string.ascii_lowercase
+    characters += string.digits
+    characters += string.punctuation
+
+    password = ''.join(random.choice(characters) for _ in range(length))
+    return password
